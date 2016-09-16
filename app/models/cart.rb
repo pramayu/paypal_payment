@@ -21,7 +21,7 @@ class Cart < ApplicationRecord
         "item_number_#{index+1}" => item.product.id
       })
     end
-    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.map{|k,v| "#{k}=#{v}" }.join("&")
+    "https://www.sandbox.paypal.com/cgi-bin/webscr?"+values.to_query
   end
 
 end
