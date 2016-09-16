@@ -25,8 +25,7 @@
   <%= form_tag "https://www.sandbox.paypal.com/cgi-bin/webscr" do %>
     <%= hidden_field_tag :cmd, "_s-xclick" %>
     <%= hidden_field_tag :encrypted, @cart.paypal_encrypted(products_url, payment_notifications_url) %>
-    <%#= hidden_field_tag :custom, "#{current_user.id} | #{current_user.username}" %>
-    <%= hidden_field_tag :custom, "#{[current_user.id][current_user.username]}" %>
+    <%= hidden_field_tag :custom, "#{current_user.id} | #{current_user.username}" %>
     <p><%= submit_tag "CHECKOUT", class: "btn btn-primary" %></p>
   <% end %>
 
