@@ -19,8 +19,7 @@ class Cart < ApplicationRecord
       values.merge!({
         "amount_#{index+1}" => item.unit_price,
         "item_name_#{index+1}" => item.product.name,
-        "item_number_#{index+1}" => item.product.id,
-        "custom_#{index+1}" => item.product.user.id
+        "item_number_#{index+1}" => item.product.id
       })
     end
     encrypt_for_paypal(values)
