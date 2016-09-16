@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916104713) do
+ActiveRecord::Schema.define(version: 20160916111750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20160916104713) do
     t.string   "notice_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "line_item_id"
+    t.index ["line_item_id"], name: "index_notifications_on_line_item_id", using: :btree
     t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id", using: :btree
     t.index ["product_id"], name: "index_notifications_on_product_id", using: :btree
     t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
@@ -84,6 +86,7 @@ ActiveRecord::Schema.define(version: 20160916104713) do
 
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "products"
+  add_foreign_key "notifications", "line_items"
   add_foreign_key "notifications", "products"
   add_foreign_key "notifications", "users"
   add_foreign_key "notifications", "users", column: "notified_by_id"
