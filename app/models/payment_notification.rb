@@ -1,7 +1,7 @@
 class PaymentNotification < ApplicationRecord
   belongs_to :cart
   serialize :params
-  after_create :mark_as_purchased, notification_to_user
+  after_create :mark_as_purchased, :notification_to_user
 
 
   def mark_as_purchased
