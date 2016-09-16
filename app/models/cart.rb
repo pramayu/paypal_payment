@@ -18,7 +18,8 @@ class Cart < ApplicationRecord
       values.merge!({
         "amount_#{index+1}" => item.unit_price,
         "item_name_#{index+1}" => item.product.name,
-        "item_number_#{index+1}" => item.product.id
+        "item_number_#{index+1}" => item.product.id,
+        "receiver_id_#{index+1}" => item.product.user.id
       })
     end
     "https://www.sandbox.paypal.com/cgi-bin/webscr?"+values.to_query
