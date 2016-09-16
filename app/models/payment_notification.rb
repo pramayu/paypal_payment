@@ -11,9 +11,9 @@ class PaymentNotification < ApplicationRecord
   def notif
     cart.line_items.each do |item|
       item.notifications.build(user_id: item.product.user.id,
-                              notified_by_id: params[:custom],
-                              product_id: item.product.id,
-                              notice_type: 'bought')
-    end
-  end
+                               notified_by_id: params[:custom],
+                               product_id: item.product.id,
+                               notice_type: 'bought')
+      end
+   end
 end
