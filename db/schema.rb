@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916072057) do
+ActiveRecord::Schema.define(version: 20160916104713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20160916072057) do
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
     t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.integer  "notified_by_id"
+    t.string   "notice_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id", using: :btree
+    t.index ["product_id"], name: "index_notifications_on_product_id", using: :btree
+    t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
 
   create_table "payment_notifications", force: :cascade do |t|
@@ -72,6 +84,9 @@ ActiveRecord::Schema.define(version: 20160916072057) do
 
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "products"
+  add_foreign_key "notifications", "products"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", column: "notified_by_id"
   add_foreign_key "payment_notifications", "carts"
   add_foreign_key "products", "users"
 end
