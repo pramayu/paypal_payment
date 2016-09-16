@@ -26,7 +26,7 @@
     <%= hidden_field_tag :cmd, "_s-xclick" %>
     <%= hidden_field_tag :encrypted, @cart.paypal_encrypted(products_url, payment_notifications_url) %>
     <%#= hidden_field_tag :custom, "#{current_user.id} | #{current_user.username}" %>
-    <%= hidden_field_tag :custom, "#{user_id: current_user.id}" %>
+    <%= hidden_field_tag :custom, "#{[current_user.id][current_user.username]}" %>
     <p><%= submit_tag "CHECKOUT", class: "btn btn-primary" %></p>
   <% end %>
 
