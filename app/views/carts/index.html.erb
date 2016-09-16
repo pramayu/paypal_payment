@@ -19,7 +19,7 @@
   </tr>
   
   <p>
-    <%= link_to "CHECKOUT", @cart.paypal_url(root_path, payment_notifications_url) %>
+    <%= link_to "CHECKOUT", @cart.paypal_url(products_url, payment_notifications_url) %>
   </p>
 
 </table>
